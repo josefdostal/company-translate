@@ -1,6 +1,6 @@
 # COMPANY TRANSLATE
 
-This application aims to help companies with handling translations and taxonomy.
+KISS implementation of company translator and taxonomy keeper.
 
 The idea is to be able to approve certain keywords. In case there are no approved translations, a backup translator (e.g. Google translate) will suggest the translation (because something is better than nothing).
 
