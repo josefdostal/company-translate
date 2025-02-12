@@ -7,13 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Entities\" />
       <Folder Include="Events\" />
       <Folder Include="Repositories\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\CompanyTranslate.Infrastructure\CompanyTranslate.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

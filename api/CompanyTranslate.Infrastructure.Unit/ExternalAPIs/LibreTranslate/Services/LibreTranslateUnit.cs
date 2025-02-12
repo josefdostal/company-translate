@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Http.Json;
+using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate;
 using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Models;
 using Moq;
 using Newtonsoft.Json;
@@ -8,13 +9,13 @@ namespace CompanyTranslate.Infrastructure.Unit.ExternalAPIs.LibreTranslate.Servi
 
 public class LibreTranslateUnit
 {
-	public Mock<HttpClient> ClientM { get; }
-	public Infrastructure.ExternalAPIs.LibreTranslate.Services.LibreTranslate Subject { get; }
+	private readonly Mock<HttpClient> _httpClientM;
+	private readonly LibreTranslateClient _client;
 	
 	public LibreTranslateUnit()
 	{
-		ClientM = new Mock<HttpClient>();
-		Subject = new Infrastructure.ExternalAPIs.LibreTranslate.Services.LibreTranslate(ClientM.Object);
+		_httpClientM = new Mock<HttpClient>();
+		_client = new LibreTranslateClient(_httpClientM.Object);
 	}
 	
 	[Fact]
@@ -31,10 +32,10 @@ public class LibreTranslateUnit
 			               Content = responseContent,
 		               };
 
-		ClientM.Setup(x => x.SendAsync(It.IsAny<HttpRequestMessage>(), It.IsAny<CancellationToken>())).ReturnsAsync(response);
+		_httpClientM.Setup(x => x.SendAsync(It.IsAny<HttpRequestMessage>(), It.IsAny<CancellationToken>())).ReturnsAsync(response);
 
 		// Act
-		var result = await Subject.TranslateAsync(payload);
+		var result = await _client.TranslateAsync(payload);
 		
 		// Assert
 		Assert.NotNull(result);
@@ -51,9 +52,9 @@ public class LibreTranslateUnit
 		var response = new HttpResponseMessage();
 		response.StatusCode = HttpStatusCode.NotFound;
 
-		ClientM.Setup(x => x.SendAsync(It.IsAny<HttpRequestMessage>(), It.IsAny<CancellationToken>())).ReturnsAsync(response);
+		_httpClientM.Setup(x => x.SendAsync(It.IsAny<HttpRequestMessage>(), It.IsAny<CancellationToken>())).ReturnsAsync(response);
 
 		// Act / Assert
-		await Assert.ThrowsAsync<HttpRequestException>(async () => await Subject.TranslateAsync(payload));
+		await Assert.ThrowsAsync<HttpRequestException>(async () => await _client.TranslateAsync(payload));
 	}
 }

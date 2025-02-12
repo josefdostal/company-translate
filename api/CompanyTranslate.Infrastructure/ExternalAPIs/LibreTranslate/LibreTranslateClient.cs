@@ -1,9 +1,10 @@
 ﻿using System.Net.Http.Json;
+using CompanyTranslate.Domain.Entities.Translations;
 using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Models;
 
-namespace CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Services;
+namespace CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate;
 
-public class LibreTranslate(HttpClient httpClient) : ILibreTranslateClient
+public class LibreTranslateClient(HttpClient httpClient) : ILibreTranslatorClient
 {
 	public async Task<TranslationResponse> TranslateAsync(TranslationRequest request, CancellationToken cancellationToken = default)
 	{

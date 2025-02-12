@@ -1,10 +1,8 @@
 using CompanyTranslate.Application.Services.Translations;
-using CompanyTranslate.Application.Services.Translations.Implementations;
-using CompanyTranslate.Domain.Services.Translators;
-using CompanyTranslate.Domain.Services.Translators.Services;
+using CompanyTranslate.Domain.Interfaces.Translations;
+using CompanyTranslate.Infrastructure.Adapters.Translations;
 using CompanyTranslate.Infrastructure.Configuration.Translate;
 using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate;
-using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Services;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,7 +26,7 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
     services.Configure<LibreTranslateConfiguration>(configuration.GetSection("LibreTranslate"));
     services.AddTransient<ITranslationService, TranslationService>();
     services.AddTransient<ITranslator, LibreTranslateTranslator>();
-    services.AddHttpClient<ILibreTranslateClient, LibreTranslate>((svcs, opts) =>
+    services.AddHttpClient<ILibreTranslatorClient, LibreTranslateClient>((svcs, opts) =>
     {
         opts.BaseAddress = svcs.GetService<IOptions<LibreTranslateConfiguration>>()?.Value.Url;
     });

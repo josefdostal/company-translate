@@ -12,10 +12,10 @@ public class TranslationsController(ITranslationService translationService) : Co
 	[Route("{text}/{sourceLanguage}/{targetLanguage}")]
 	public async Task<IActionResult> GetTranslationAsync([FromRoute]TranslationRequest request, CancellationToken cancellationToken)
 	{
-		var translation = await translationService.TranslateAsync(request.Text, request.SourceLanguage, request.TargetLanguage, cancellationToken);
-		if (translation == null)
+		var result = await translationService.GetTranslationAsync(request.Text, request.SourceLanguage, request.TargetLanguage, cancellationToken);
+		if (result == null)
 			return NotFound();
-		var result = new TranslationResponse(translation.Translations);
+		
 		return Ok(result);
 	}
 }
