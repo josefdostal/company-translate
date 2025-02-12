@@ -1,5 +1,5 @@
 ﻿using System.Net.Http.Json;
-using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Dtos;
+using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Models;
 
 namespace CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Services;
 

@@ -1,6 +1,13 @@
+using CompanyTranslate.Application.Services.Translations;
+using CompanyTranslate.Domain.Services.Translators;
+using CompanyTranslate.Domain.Services.Translators.Services;
+using CompanyTranslate.Infrastructure.Configuration.Translate;
+using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Services;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
-ConfigureServices(builder.Services);
+ConfigureServices(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
@@ -10,11 +17,19 @@ app.Run();
 return;
 
 // Add services to the container.
-void ConfigureServices(IServiceCollection services)
+void ConfigureServices(IServiceCollection services, IConfiguration configuration)
 {
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
     services.AddControllers().AddNewtonsoftJson();
+
+    services.Configure<LibreTranslateConfiguration>(configuration.GetSection("LibreTranslate"));
+    services.AddTransient<ITranslationService, TranslationService>();
+    services.AddTransient<ITranslator, LibreTranslateTranslator>();
+    services.AddHttpClient<LibreTranslate>((svcs, opts) =>
+    {
+        opts.BaseAddress = svcs.GetService<IOptions<LibreTranslateConfiguration>>()?.Value.Url;
+    });
 }
 
 // Configure the HTTP request pipeline.

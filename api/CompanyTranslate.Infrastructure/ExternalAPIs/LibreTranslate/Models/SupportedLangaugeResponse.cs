@@ -1,4 +1,4 @@
-﻿namespace CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Dtos;
+﻿namespace CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Models;
 
 public record SupportedLangaugeResponse
 {

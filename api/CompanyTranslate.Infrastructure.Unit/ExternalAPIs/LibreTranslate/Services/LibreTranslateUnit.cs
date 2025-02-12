@@ -1,6 +1,6 @@
 using System.Net;
 using System.Net.Http.Json;
-using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Dtos;
+using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Models;
 using Moq;
 using Newtonsoft.Json;
 
@@ -22,11 +22,7 @@ public class LibreTranslateUnit
 	{
 		// Arrange
 		var payload = new TranslationRequest("test", "cs", "en");
-		var responsePayload = new TranslationResponse
-		                      {
-			                      TranslatedText = "test_translated",
-			                      Alternatives = ["alternative1", "alternative2"],
-		                      };
+		var responsePayload = new TranslationResponse("test_translated", ["alternative1", "alternative2"]);
 		
 		var responseContent = JsonContent.Create(responsePayload);
 
