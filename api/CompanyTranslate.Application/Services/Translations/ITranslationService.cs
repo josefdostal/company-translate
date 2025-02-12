@@ -1,4 +1,4 @@
-﻿using CompanyTranslate.Application.DTOs.Translations;
+﻿using CompanyTranslate.Application.Dtos.Translations;
 
 namespace CompanyTranslate.Application.Services.Translations;
 
