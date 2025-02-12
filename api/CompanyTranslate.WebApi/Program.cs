@@ -14,7 +14,7 @@ void ConfigureServices(IServiceCollection services)
 {
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
-    services.AddControllers();
+    services.AddControllers().AddNewtonsoftJson();
 }
 
 // Configure the HTTP request pipeline.
