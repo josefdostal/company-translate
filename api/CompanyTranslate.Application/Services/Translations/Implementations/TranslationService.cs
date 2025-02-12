@@ -1,7 +1,7 @@
 ﻿using CompanyTranslate.Application.DTOs.Translations;
 using CompanyTranslate.Domain.Services.Translators;
 
-namespace CompanyTranslate.Application.Services.Translations;
+namespace CompanyTranslate.Application.Services.Translations.Implementations;
 
 public class TranslationService(IEnumerable<ITranslator> translationServices) : ITranslationService
 {

@@ -1,4 +1,5 @@
 using CompanyTranslate.Application.Services.Translations;
+using CompanyTranslate.Application.Services.Translations.Implementations;
 using CompanyTranslate.Domain.Services.Translators;
 using CompanyTranslate.Domain.Services.Translators.Services;
 using CompanyTranslate.Infrastructure.Configuration.Translate;

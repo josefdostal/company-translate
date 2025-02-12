@@ -1,4 +1,5 @@
 ﻿using CompanyTranslate.Application.Services.Translations;
+using CompanyTranslate.WebApi.Controllers.Translations.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CompanyTranslate.WebApi.Controllers.Translations;
@@ -9,9 +10,9 @@ public class TranslationsController(ITranslationService translationService) : Co
 {
 	[HttpGet]
 	[Route("{text}/{sourceLanguage}/{targetLanguage}")]
-	public async Task<IActionResult> TranslateAsync(string text, string sourceLanguage, string targetLanguage, CancellationToken cancellationToken)
+	public async Task<IActionResult> GetTranslationAsync([FromRoute]TranslationRequest request, CancellationToken cancellationToken)
 	{
-		var result = await translationService.TranslateAsync(text, sourceLanguage, targetLanguage, cancellationToken);
+		var result = await translationService.TranslateAsync(request.Text, request.SourceLanguage, request.TargetLanguage, cancellationToken);
 		if (result == null)
 			return NotFound();
 		return Ok(result);
