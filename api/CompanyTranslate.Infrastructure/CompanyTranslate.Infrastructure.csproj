@@ -8,10 +8,13 @@
 
     <ItemGroup>
       <Folder Include="Configuration\" />
-      <Folder Include="ExternalAPIs\" />
       <Folder Include="Logging\" />
       <Folder Include="Persistence\" />
       <Folder Include="Repositories\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 
 </Project>
