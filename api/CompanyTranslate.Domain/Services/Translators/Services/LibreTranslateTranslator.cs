@@ -1,13 +1,13 @@
 ﻿using CompanyTranslate.Domain.Services.Translators.Dtos;
+using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate;
 using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Models;
-using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Services;
 
 namespace CompanyTranslate.Domain.Services.Translators.Services;
 
 /// <summary>
 /// Adapter to LibreTranslate service
 /// </summary>
-public class LibreTranslateTranslator(LibreTranslate client) : ITranslator
+public class LibreTranslateTranslator(ILibreTranslateClient client) : ITranslator
 {
 	public async Task<TranslationDto?> GetTranslationAsync(string text,
 	                                                       string sourceLanguage,
@@ -18,7 +18,8 @@ public class LibreTranslateTranslator(LibreTranslate client) : ITranslator
 		try
 		{
 			var response = await client.TranslateAsync(request, cancellationToken);
-			var result = new TranslationDto(response.TranslatedText, response.Alternatives);
+			var translations = response.Alternatives.Prepend(response.TranslatedText).ToList();
+			var result = new TranslationDto(translations);
 			return result;
 		}
 		catch

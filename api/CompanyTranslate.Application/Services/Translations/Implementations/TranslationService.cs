@@ -13,7 +13,7 @@ public class TranslationService(IEnumerable<ITranslator> translationServices) : 
 			if(transation == null)
 				continue;
 
-			var result = new TranslationDto(transation.Translation, transation.Alternatives);
+			var result = new TranslationDto(transation.Translations);
 			return result;
 		}
 		return null;
