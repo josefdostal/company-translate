@@ -4,7 +4,7 @@ using CompanyTranslate.Domain.Interfaces.Translations;
 
 namespace CompanyTranslate.Domain.Services.Translations;
 
-public class TranslationResolverService(IEnumerable<ITranslator> translators) : ITranslationResolverService
+public class TranslationResolver(IEnumerable<ITranslator> translators) : ITranslationResolver
 {
 	public async Task<Translation?> TranslateAsync(string text, string sourceLanguage, string targetLanguage, CancellationToken cancellationToken = default)
 	{
