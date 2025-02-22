@@ -3,7 +3,6 @@ using System.Net.Http.Json;
 using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate;
 using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Models;
 using Moq;
-using Newtonsoft.Json;
 
 namespace CompanyTranslate.Infrastructure.Unit.ExternalAPIs.LibreTranslate.Services;
 

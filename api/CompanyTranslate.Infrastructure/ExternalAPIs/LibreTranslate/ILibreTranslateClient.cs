@@ -2,7 +2,7 @@
 
 namespace CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate;
 
-public interface ILibreTranslatorClient
+public interface ILibreTranslateClient
 {
 	Task<TranslationResponse> TranslateAsync(TranslationRequest request, CancellationToken cancellationToken = default);
 }

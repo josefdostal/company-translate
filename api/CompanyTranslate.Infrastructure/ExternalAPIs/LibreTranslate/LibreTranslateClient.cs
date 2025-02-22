@@ -4,7 +4,7 @@ using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Models;
 
 namespace CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate;
 
-public class LibreTranslateClient(HttpClient httpClient) : ILibreTranslatorClient
+public class LibreTranslateClient(HttpClient httpClient) : ILibreTranslateClient
 {
 	public async Task<TranslationResponse> TranslateAsync(TranslationRequest request, CancellationToken cancellationToken = default)
 	{

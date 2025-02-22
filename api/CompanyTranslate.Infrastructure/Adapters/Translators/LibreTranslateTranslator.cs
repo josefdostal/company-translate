@@ -3,9 +3,9 @@ using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate;
 using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Models;
 using ITranslator = CompanyTranslate.Domain.Interfaces.Translations.ITranslator;
 
-namespace CompanyTranslate.Infrastructure.Adapters.Translations;
+namespace CompanyTranslate.Infrastructure.Adapters.Translators;
 
-public class LibreTranslateTranslator(LibreTranslateClient client) : ITranslator
+public class LibreTranslateTranslator(ILibreTranslateClient client) : ITranslator
 {
 	public async Task<Translation?> GetTranslationAsync(string text,
 	                                                       string sourceLanguage,
