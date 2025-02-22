@@ -1,4 +1,5 @@
 ﻿using CompanyTranslate.Domain.Entities.Translations;
+using CompanyTranslate.Infrastructure.Exceptions;
 using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate;
 using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Models;
 using ITranslator = CompanyTranslate.Domain.Interfaces.Translations.ITranslator;
@@ -18,7 +19,7 @@ public class LibreTranslateTranslator(ILibreTranslateClient client) : ITranslato
 			var response = await client.TranslateAsync(request, cancellationToken);
 			var translations = response.Alternatives.Prepend(response.TranslatedText).ToList();
 			var result = new Translation(translations);
-			
+
 			return result;
 		}
 		catch (HttpRequestException)

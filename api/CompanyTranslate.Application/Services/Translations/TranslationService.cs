@@ -7,6 +7,7 @@ public class TranslationService (ITranslationResolver translationResolver) : ITr
 {
 	public async Task<TranslationDto?> GetTranslationAsync(string text, string sourceLanguage, string targetLanguage, CancellationToken cancellationToken = default)
 	{
+		// TODO validate supported languages
 		var translation = await translationResolver.TranslateAsync(text, sourceLanguage, targetLanguage, cancellationToken);
 		
 		if(translation is null)
