@@ -2,5 +2,5 @@
 
 public class CompanyTranslateConfiguration
 {
-	public List<string> SupportedLangauges { get; set; }
+	public List<string> AvailableLanguages { get; set; }
 }
