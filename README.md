@@ -9,3 +9,13 @@ A user can propose an approval of a translation, which has to be processed by a 
 The application can also handle taxonomy, with explanation of the keyword.
 
 Also, user can list all the approved keywords, see the explanations (if available) and approved translations.
+
+## Setup
+
+> TODO docker commands to docker compose
+
+* run libretranslate
+
+```
+docker run -d --name libretranslate -p 5050:5000 -v D:\personal\docker-volumes\libretranslate:/home/libretranslate/ -e LT_LOAD_ONLY="cs,en" libretranslate/libretranslate
+```

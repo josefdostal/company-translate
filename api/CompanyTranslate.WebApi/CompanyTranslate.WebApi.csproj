@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.12" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
@@ -16,6 +18,12 @@
     <Content Include="..\.dockerignore">
       <Link>.dockerignore</Link>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CompanyTranslate.Application\CompanyTranslate.Application.csproj" />
+    <ProjectReference Include="..\CompanyTranslate.Domain\CompanyTranslate.Domain.csproj" />
+    <ProjectReference Include="..\CompanyTranslate.Infrastructure\CompanyTranslate.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
