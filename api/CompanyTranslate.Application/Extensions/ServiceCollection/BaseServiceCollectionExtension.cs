@@ -1,4 +1,5 @@
-﻿using CompanyTranslate.Application.Services.Translations;
+﻿using CompanyTranslate.Application.Configurations;
+using CompanyTranslate.Application.Services.Translations;
 using CompanyTranslate.Domain.Services.Translations;
 using CompanyTranslate.Infrastructure.Configuration.Translate;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +12,7 @@ public static class BaseServiceCollectionExtension
 	public static IServiceCollection AddBaseService(this IServiceCollection @this, IConfiguration configuration)
 	{
 		@this.Configure<LibreTranslateConfiguration>(configuration.GetSection("LibreTranslate"));
+		@this.Configure<CompanyTranslateConfiguration>(configuration.GetSection("CompanyTranslate"));
 		@this.AddTransient<ITranslationService, TranslationService>();
 		@this.AddTransient<ITranslationResolver, TranslationResolver>();
 		
