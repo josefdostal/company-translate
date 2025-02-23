@@ -1,10 +1,5 @@
 using CompanyTranslate.Application.Extensions.ServiceCollection;
-using CompanyTranslate.Application.Services.Translations;
-using CompanyTranslate.Domain.Interfaces.Translations;
-using CompanyTranslate.Domain.Services;
-using CompanyTranslate.Domain.Services.Translations;
-using CompanyTranslate.Infrastructure.Adapters.Translators;
-using CompanyTranslate.Infrastructure.Configuration.Translate;
+using CompanyTranslate.WebApi.Middlewares.ExceptionHandlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +17,7 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
 {
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
-    services.AddControllers().AddNewtonsoftJson();
+    services.AddControllers();
 
     services.AddBaseService(configuration);
 }
@@ -35,6 +30,8 @@ void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         app.UseSwagger();
         app.UseSwaggerUI();
     }
+
+    app.UseMiddleware<LanguageNotFoundExceptionHandlerMiddleware>();
 
     app.UseRouting();
     app.UseEndpoints(ep => ep.MapControllers());

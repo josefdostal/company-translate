@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http.Json;
 using CompanyTranslate.Domain.Entities.Translations;
-using CompanyTranslate.Infrastructure.Exceptions;
+using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Exceptions;
 using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Models;
 using Newtonsoft.Json;
 
@@ -21,7 +21,7 @@ public class LibreTranslateClient(HttpClient httpClient) : ILibreTranslateClient
 		var response = await httpClient.SendAsync(message, cancellationToken);
 		
 		if(response.StatusCode == HttpStatusCode.BadRequest)
-			throw new LanguageNotFoundException();
+			throw new LanguageNotSupportedException("A given language is not supported");
 		
 		response.EnsureSuccessStatusCode(); 
 		

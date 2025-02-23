@@ -1,5 +1,4 @@
 ﻿using CompanyTranslate.Domain.Entities.Translations;
-using CompanyTranslate.Infrastructure.Exceptions;
 using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate;
 using CompanyTranslate.Infrastructure.ExternalAPIs.LibreTranslate.Models;
 using ITranslator = CompanyTranslate.Domain.Interfaces.Translations.ITranslator;
