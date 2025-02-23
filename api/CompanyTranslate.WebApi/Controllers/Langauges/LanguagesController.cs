@@ -1,3 +1,4 @@
+﻿using CompanyTranslate.Application.Services.Languages;
 ﻿using CompanyTranslate.Application.Configurations;
 using CompanyTranslate.WebApi.Controllers.Langauges.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -7,18 +8,13 @@ namespace CompanyTranslate.WebApi.Controllers.Langauges;
 
 [Controller]
 [Route("/api/v1/languages")]
-public class LanguagesController(IOptions<CompanyTranslateConfiguration> config) : ControllerBase
+public class LanguagesController(ILanguageService service) : ControllerBase
 {
 	[HttpGet]
 	public IActionResult Get([FromQuery]bool? isAvailable)
 	{
-		var result = SupportedLangauge.All
-		             .Select(x => new LanguageResponse(x.Code, x.Name, config.Value.AvailableLanguages.Contains(x.Code)))
-		             .ToList();
+		var result = service.GetLanguages(isAvailable);
 		
-		if(isAvailable != null)
-			result.RemoveAll(x => x.IsAvailable != isAvailable);
-
-		return new OkObjectResult(result);
+		return Ok(result);
 	}
 }
