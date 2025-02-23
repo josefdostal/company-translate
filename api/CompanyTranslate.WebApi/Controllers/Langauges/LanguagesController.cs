@@ -1,5 +1,8 @@
 ﻿using CompanyTranslate.Application.Services.Languages;
+﻿using CompanyTranslate.Application.Configurations;
+using CompanyTranslate.WebApi.Controllers.Langauges.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace CompanyTranslate.WebApi.Controllers.Langauges;
 
